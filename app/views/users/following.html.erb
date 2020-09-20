@@ -1,0 +1,5 @@
+フォロー一覧
+<% @user.following_users.each do |following_user| %>
+ <%= following_user.name %>
+
+<% end %>
