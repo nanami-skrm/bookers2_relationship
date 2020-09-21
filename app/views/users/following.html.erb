@@ -1,5 +1,25 @@
-フォロー一覧
-<% @user.following_users.each do |following_user| %>
- <%= following_user.name %>
+<h2>Follow Users</h2>
 
-<% end %>
+<table class="table">
+	<thead>
+		<tr>
+			<th>image</th>
+			<th>name</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @user.following_users.each do |following_user| %>
+			<tr>
+				<td><%= attachment_image_tag(following_user, :profile_image, :fill, 35, 35, fallback: "no-image-mini.jpg") %>
+				</td>
+				<td><%= following_user.name %></td>
+				<td>フォロー数：<%= following_user.follower.count %></td>
+				<td>フォロワー数：<%= following_user.followed.count %></td>
+				<td><%= link_to "Show", user_path(following_user) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

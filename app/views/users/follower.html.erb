@@ -1,5 +1,24 @@
-フォロワー一覧
-<% @user.follower_users.each do |follower_user| %>
- <%= follower_user.name %>
-
-<% end %>
+<h2>Fllower Users</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>image</th>
+			<th>name</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @user.follower_users.each do |follower_user| %>
+			<tr>
+				<td><%= attachment_image_tag(follower_user, :profile_image, :fill, 35, 35, fallback: "no-image-mini.jpg") %>
+				</td>
+				<td><%= follower_user.name %></td>
+				<td>フォロー数：<%= follower_user.follower.count %></td>
+				<td>フォロワー数：<%= follower_user.followed.count %></td>
+				<td><%= link_to "Show", user_path(follower_user) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
